@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Login V3</title>
+	<title>SIGN IN - KOPERASI</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->	
-	<link rel="icon" type="image/png" href="{{ asset('Assets/images/icons/favicon.ico') }}"/>
+	<link rel="icon" type="image/png" href="{{ asset('Assets/images/logo_koperasi.png') }}"/>
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="{{ asset('Assets/vendor/bootstrap/css/bootstrap.min.css') }}">
 <!--===============================================================================================-->
@@ -40,7 +40,7 @@
 					</span>
 
 					<span class="login100-form-title p-b-34 p-t-27">
-						Log in
+						SIGN IN
 					</span>
 
 					<div class="wrap-input100 validate-input" data-validate = "Enter email">
@@ -74,7 +74,7 @@
 
 					<div class="container-login100-form-btn">
 						<button class="login100-form-btn" type="submit">
-							Login
+							SIGN IN
 						</button>
 					</div>
 

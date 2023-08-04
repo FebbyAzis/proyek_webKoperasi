@@ -11,7 +11,9 @@
                         <h2 class="text-white pb-2 fw-bold">Detail Simpanan Anggota</h2>
                         <h5 class="text-white op-7 mb-2">KOPERASI TUTWURI HANDAYANI</h5>
                     </div>
-                    <div class="col-lg-9" style="text-align: end">
+                    <div class="col-6"></div>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <div class="col-sm-2" style="text-align: end">
                     <a href="{{ route('penarikan.show', $simpanan->id) }}">
                     <button class="btn btn-secondary btn-round ml-auto">
                         <i class="fas fa-money-bill"></i>
@@ -111,7 +113,9 @@
                             <tr>
                                 <th>No</th>
                                 <th>Tanggal</th>
-                                <th>Simpanan</th>               
+                                <th>Total Simpanan</th> 
+                                <th>Simpanan Baru</th> 
+                                                
                                 {{-- <th>Sisa Simpanan</th> --}}
                             </tr>
                         </thead>
@@ -123,7 +127,8 @@
                                 @endphp
                             <tr>
                                 <td>{{ $no+1 }}</td>
-                                <td>{{date("d/M/Y", strtotime($item->tanggal));}}</td>  
+                                <td>{{date("d/M/Y", strtotime($item->created_at));}}</td>  
+                                <td>Rp. {{ number_format($item['jumlahUpdate'], 0, ',', '.') }}</td>   
                                 <td>Rp. {{ number_format($item['jumlah'], 0, ',', '.') }}</td>                 
                                 {{-- <td>Rp. {{ number_format($item->jumlah - $item->jumlahPenarikan, 0, ',', '.') }}</td> --}}
                             </tr>
@@ -131,7 +136,7 @@
                         </tbody>
                         <tfoot>
                             <tr>
-                                <th class="text-right" colspan="2"> Total </th>
+                                <th class="text-right" colspan="3"> Total </th>
                                 <th>Rp. {{ number_format($total, 0, ',', '.') }}</th>
                             </tr>
                         </tfoot>
@@ -147,76 +152,6 @@
 
 
 
-        <form action="{{ route('detailSimpanan.store') }}" method="POST">
-            @csrf
-            @method('POST') 
-        <div class="modal fade" id="addRowModal" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header no-bd">
-                        <h5 class="modal-title">
-                            <span class="fw-mediumbold">
-                            Tambah</span> 
-                            <span class="fw-light">
-                                Simpanan Anggota
-                            </span>
-                        </h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <p class="small">Lengkapi data dibawah ini untuk menambahkan simpanan anggota baru!</p>
-                        <div class="col-sm-12 mt-1">
-                      
-                      </div>
-                            <div class="row">
-                                {{-- <input type="hidden" name="id" value="{{ $simpanan->id }}"> --}}
-
-                                <div class="col-sm-12 mt-1">
-                                    <div class="form-group form-group-default">
-                                        <label>Tanggal</label>
-                                        <input id="addName" type="date" class="form-control" placeholder="" name="tanggal">
-                                    </div>
-                                </div>
-
-                                <div class="col-sm-12 mt-1">
-                                    <div class="form-group">
-                                        <label for="exampleFormControlSelect1">Pilih User</label>
-                                        <select class="form-control" id="exampleFormControlSelect1" name="simpanan_id">
-                                       
-                                            <option value="{{ $simpanan->id }}">{{$simpanan->users->name}} - {{$simpanan->jenisSimpanan->namaSimpanan}}
-                                                 
-                                            </option>
-                                           
-                                         
-                                         </select>
-                                      </div>
-                                </div>
-
-                                <div class="col-sm-12 mt-1">
-                                    <div class="form-group form-group-default">
-                                        <label>Jumlah Simpanan</label>
-                                        <input id="addName" type="text" class="form-control" placeholder="Masukan Nominal Simpanan" name="jumlah">
-                                    </div>
-                                </div>
-                                </form>
-                               
-                            
-                                
-                                
-                               
-                            </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer no-bd">
-                        <button type="submit" id="addRowButton" class="btn btn-primary">Add</button>
-                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </form>
 
     
 
@@ -256,7 +191,7 @@
                             <div class="form-group form-group-default">
                                 <label>Jumlah simpanan setelah update</label>
                                
-                                <input id="addName" type="text" class="form-control" placeholder="jumlah" name="jumlahSimpanan" value="{{$total}}"><b>Rp. {{ number_format($total, 0, ',', '.') }}</b>
+                                <input id="addName" type="text" class="form-control" placeholder="jumlah" name="jumlahSimpanan" value="{{$simpanan->jumlahSimpanan + $i->jumlah}}"><b>Rp. {{ number_format($simpanan->jumlahSimpanan + $i->jumlah, 0, ',', '.') }}</b>
                             </div>
                         </div>
 
@@ -273,7 +208,102 @@
 </div>
 </form>
                     
-                @endforeach
+@endforeach
 
+
+<form action="{{ route('detailSimpanan.store') }}" method="POST">
+    @csrf
+    @method('POST') 
+<div class="modal fade" id="addRowModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header no-bd">
+                <h5 class="modal-title">
+                    <span class="fw-mediumbold">
+                    Tambah</span> 
+                    <span class="fw-light">
+                        Simpanan Anggota
+                    </span>
+                </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p class="small">Lengkapi data dibawah ini untuk menambahkan simpanan anggota baru!</p>
+                <div class="col-sm-12 mt-1">
+              
+              </div>
+                    <div class="row">
+                        {{-- <input type="hidden" name="id" value="{{ $simpanan->id }}"> --}}
+
+                        {{-- <div class="col-sm-12 mt-1">
+                            <div class="form-group form-group-default">
+                                <label>Tanggal</label>
+                                <input id="addName" type="date" class="form-control" placeholder="" name="tanggal">
+                            </div>
+                        </div> --}}
+
+                        <div class="col-sm-12 mt-1">
+                            <div class="form-group">
+                                <label for="exampleFormControlSelect1">Pilih User</label>
+                                <select class="form-control" id="exampleFormControlSelect1" name="simpanan_id">
+                               
+                                    <option value="{{ $simpanan->id }}">{{$simpanan->users->name}} - {{$simpanan->jenisSimpanan->namaSimpanan}}
+                                         
+                                    </option>
+                                   
+                                 
+                                 </select>
+                              </div>
+                        </div>
+
+                        <div class="col-sm-12 mt-1">
+                            <div class="form-group form-group-default">
+                            <label>Jumlah simpanan saat ini : <b>Rp. {{ number_format($simpanan->jumlahSimpanan, 0, ',', '.') }}</b></label>
+                            <input type="hidden" name="jumlahSimpanan" value="{{ $simpanan->jumlahSimpanan }}" id="jumlahSimpanan" onkeyup="sum();">
+                            </div>
+                        </div>
+
+                        <div class="col-sm-12 mt-1">
+                            <div class="form-group form-group-default">
+                                <label>Jumlah Simpanan Yang Ingin Ditambahkan</label>
+                                <input type="text" class="form-control" placeholder="Masukan Nominal Simpanan" name="jumlah" id="jumlah" onkeyup="sum();">
+                            </div>
+                        </div>
+
+                        <div class="col-sm-12 mt-1">
+                            <div class="form-group form-group-default">
+                                <label>Total Simpanan</label>
+                                <input type="text" class="form-control" placeholder="Masukan Nominal Penarikan" name="jumlahUpdate" id="jumlahUpdate" onkeyup="sum();" readonly>
+                            </div>
+                        </div>
+                      
+                       
+                    
+                        
+                        
+                       
+                    </div>
+               
+            </div>
+            <div class="modal-footer no-bd">
+                <button type="submit" id="addRowButton" class="btn btn-primary">Add</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+</form>
+<script>
+    function sum() {
+        var txtFirstNumberValue = document.getElementById('jumlahSimpanan').value;
+        var txtSecondNumberValue = document.getElementById('jumlah').value;
+        var result = parseInt(txtFirstNumberValue) + parseInt(txtSecondNumberValue)
+        if (!isNaN(result)) {
+            document.getElementById('jumlahUpdate').value=result;
+        }
+    }
+</script>
 
 @endsection

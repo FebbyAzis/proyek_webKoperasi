@@ -126,7 +126,7 @@
                                 @endphp
                             <tr>
                                 <td>{{ $no+1 }}</td>
-                                <td>{{date("d/M/Y", strtotime($item->created_at));}}</td>  
+                                <td>{{date("d/M/Y", strtotime($item->tanggal));}}</td>  
                                 <td>Rp. {{ number_format($item['sisaSimpanan'], 0, ',', '.') }}</td>  
                                 <td>Rp. {{ number_format($item['jumlah'], 0, ',', '.') }}</td>                 
                                 {{-- <td>Rp. {{ number_format($item->jumlah - $item->jumlahPenarikan, 0, ',', '.') }}</td> --}}
@@ -244,13 +244,13 @@
                       <form>
                             <div class="row">
                                 {{-- <input type="hidden" name="id" value="{{ $simpanan->id }}"> --}}
-{{-- 
+
                                 <div class="col-sm-12 mt-1">
                                     <div class="form-group form-group-default">
                                         <label>Tanggal</label>
                                         <input id="addName" type="date" class="form-control" placeholder="" name="tanggal">
                                     </div>
-                                </div> --}}
+                                </div>
 
                                 <div class="col-sm-12 mt-1">
                                     <div class="form-group">
@@ -284,7 +284,7 @@
                                 <div class="col-sm-12 mt-1">
                                     <div class="form-group form-group-default">
                                         <label>Sisa Simpanan</label>
-                                        <input type="text" class="form-control" placeholder="Masukan Nominal Penarikan" name="sisaSimpanan" id="sisaSimpanan" onkeyup="sum();" readonly>
+                                        <input type="text" class="form-control" placeholder="Masukan Nominal Penarikan" name="sisaSimpanan" id="sisaSimpanan" onkeyup="sum()";>
                                     </div>
                                 </div>
                                 

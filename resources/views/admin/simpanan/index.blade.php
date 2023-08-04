@@ -67,7 +67,7 @@
 
                                     <div class="col-sm-12 mt-1">
                                         <div class="form-group">
-                                            <label for="exampleFormControlSelect1">Pilih User</label>
+                                            <label for="exampleFormControlSelect1">Pilih Anggota</label>
                                             <select class="form-control" id="exampleFormControlSelect1" name="users_id">
                                               @foreach ($user as $users)
                                                 <option value="{{ $users->id }}">{{$users->name}}
@@ -96,6 +96,14 @@
                                              </select>
                                           </div>
                                     </div>
+
+                                    <div class="col-sm-12 mt-1">
+                                        <div class="form-group">
+                                            <label for="exampleFormControlSelect1">Jumlah</label>
+                                            <input id="addName" type="text" class="form-control" placeholder="jumlah simpanan" name="jumlahSimpanan">
+                                          </div>
+                                    </div>
+                                    
                                     
                                     {{-- <div class="col-sm-12 mt-1">
                                         <div class="form-group form-group-default">
@@ -164,9 +172,9 @@
                             <td>
                                 <div class="form-button-action">
                                     
-                                    {{-- <button type="button" class="btn btn-link btn-primary btn-lg" data-toggle="modal" title=""  data-original-title="Edit Task" data-target="#addRowModal{{ $s->id }}">
+                                    <button type="button" class="btn btn-link btn-primary btn-lg" data-toggle="modal" title=""  data-original-title="Edit Task" data-target="#addRowModal{{ $s->id }}">
                                         <i class="fa fa-edit"></i>
-                                    </button> --}}
+                                    </button>
                                     <a href="{{ route('detailSimpanan.show', $s->id) }}"> 
                                         <button type="button" data-toggle="" title="" class="btn btn-link btn-success btn-lg" data-original-title="" data-target="{{ route('detailSimpanan.show', $s->id) }}">
                                             <i class="fa fa-eye"></i>

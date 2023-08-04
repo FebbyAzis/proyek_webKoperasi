@@ -1,6 +1,6 @@
 @extends('admin.layout.app')
 @section('content')
-    <title>Anggota</title>
+    <title>Pinjaman Anggota</title>
 
     <div class="main-panel">
         <div class="content">
@@ -8,12 +8,12 @@
                 <div class="page-inner py-5">
                     <div class="d-flex align-items-left align-items-md-center flex-column flex-md-row">
                         <div>
-                            <h2 class="text-white pb-2 fw-bold">Simpanan Anggota</h2>
+                            <h2 class="text-white pb-2 fw-bold">Pinjaman Anggota</h2>
                             <h5 class="text-white op-7 mb-2">KOPERASI TUTWURI HANDAYANI</h5>
                         </div>
                         <button class="btn btn-secondary btn-round ml-auto" data-toggle="modal" data-target="#addRowModal">
                             <i class="fa fa-plus"></i>
-                            Tambah Simpanan Anggota
+                            Tambah Pinjaman Anggota
                         </button>
                     </div>
                 </div>
@@ -23,7 +23,7 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="d-flex align-items-center">
-                            <h4 class="card-title">Tabel Simpanan Anggota</h4>
+                            <h4 class="card-title">Tabel Pinjaman Anggota</h4>
                             {{-- <button class="btn btn-primary btn-round ml-auto" data-toggle="modal" data-target="#addRowModal">
                     <i class="fa fa-eye"></i>
                      Lihat Data Anggota
@@ -39,7 +39,7 @@
                                 <thead>
                                     <tr>
                                         <th>No</th>
-                                        <th>Tanggal</th>
+                                        {{-- <th>Tanggal</th> --}}
                                         <th>Nama Anggota</th>
                                         <th>Jenis Pinjaman</th>
                                         <th>Jumlah</th>
@@ -51,7 +51,7 @@
                                     @foreach ($data as $no => $p)
                                         <tr>
                                             <td>{{ $no + 1 }}</td>
-                                            <td>{{ $p->tanggal }}</td>
+                                            {{-- <td>{{ $p->tanggal }}</td> --}}
                                             {{-- <td>{{ $s->anggota->noAnggota }}</td> --}}
                                             <td>{{ $p->users->name }}</td>
                                             <td>{{ $p->jenisPinjaman->namaPinjaman }}</td>
@@ -106,8 +106,7 @@
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
+     
 
 
             <form action="{{ route('pinjaman.store') }}" method="POST">
@@ -121,7 +120,7 @@
                                     <span class="fw-mediumbold">
                                         Tambah</span>
                                     <span class="fw-light">
-                                        Simpanan Anggota
+                                        Pinjaman Anggota
                                     </span>
                                 </h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -129,7 +128,7 @@
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <p class="small">Lengkapi data dibawah ini untuk menambahkan simpanan anggota
+                                <p class="small">Lengkapi data dibawah ini untuk menambahkan pinjaman anggota
                                     baru!</p>
                                 <div class="col-sm-12 mt-1">
 
@@ -147,7 +146,7 @@
 
                                         <div class="col-sm-12 mt-1">
                                             <div class="form-group">
-                                                <label for="exampleFormControlSelect1">Pilih User</label>
+                                                <label for="exampleFormControlSelect1">Pilih Anggota</label>
                                                 <select class="form-control" id="exampleFormControlSelect1"
                                                     name="users_id">
                                                     @foreach ($user as $users)
@@ -242,10 +241,10 @@
                                 <div class="modal-header no-bd">
                                     <h5 class="modal-title">
                                         <span class="fw-mediumbold">
-                                            <h3>Edit
+                                            <h3>Update
                                         </span>
                                         <span class="fw-light">
-                                            Simpanan {{ $p->users->name }}</h3>
+                                            Pinjaman {{ $p->users->name }}</h3>
                                         </span>
                                     </h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">

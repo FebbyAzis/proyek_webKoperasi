@@ -55,10 +55,17 @@ class PinjamanController extends Controller
     {
 
         $data = Pinjaman::find($id);
-        $angsuran = Angsuran::all();
+        $angsuran = Angsuran::where('pinjaman_id', $id)->get();;
         $total = 0;
         $bungas = 2500;
-        // dd($data);
-        return view('admin.pinjaman.show', compact('data', 'angsuran', 'total', 'bungas'));
+        // dd($angsuran);
+
+        // if($angsuran->bungaAngsuran == 5){
+
+        // }else{
+
+        // }
+
+      return view('admin.pinjaman.show', compact('data', 'angsuran', 'total', 'bungas'));
     }
 }

@@ -121,7 +121,7 @@
                                     <span class="fw-mediumbold">
                                         Tambah</span>
                                     <span class="fw-light">
-                                        Simpanan Anggota
+                                        Angsuran Anggota
                                     </span>
                                 </h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -129,7 +129,7 @@
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <p class="small">Lengkapi data dibawah ini untuk menambahkan simpanan anggota
+                                <p class="small">Lengkapi data dibawah ini untuk menambahkan angsuran anggota
                                     baru!</p>
                                 <div class="col-sm-12 mt-1">
 
@@ -147,7 +147,7 @@
 
                                         <div class="col-sm-12 mt-1">
                                             <div class="form-group">
-                                                <label for="exampleFormControlSelect1">Pilih User</label>
+                                                <label for="exampleFormControlSelect1">Pilih Anggota</label>
                                                 <select class="form-control" id="exampleFormControlSelect1"
                                                     name="users_id">
                                                     @foreach ($pinjaman as $pinj)

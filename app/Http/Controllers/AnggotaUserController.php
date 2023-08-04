@@ -16,3 +16,4 @@ class AnggotaUserController extends Controller
         return view('user.dataAnggota.index', compact('user', 'data'));
     }
 }
+

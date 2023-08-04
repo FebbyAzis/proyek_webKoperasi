@@ -7,31 +7,32 @@ use Auth;
 use App\Models\Simpanan;
 use App\Models\Anggota;
 use App\Models\JenisSimpanan;
+use App\Models\DetailSimpanan;
+use App\Models\Penarikan;
 
 class SimpananUserController extends Controller
 {
-    public function index(Request $request){
+    public function show($id){
 
-        $user = auth()->id();
        
-        // $anggota = Anggota::where('users_id', $user)->get();
-        // $jenis = JenisSimpanan::where('id', $id)->get();
-        $data = Simpanan::where('users_id', $user)->get();
+       
+        $user = auth()->id();
+        $simpanan = Simpanan::where('users_id', $user)->get();
+        $detsimp = DetailSimpanan::where('simpanan_id', $id)->orderBy('id', 'desc')->get();
+        // dd($detsimp);
+        $total = 0;
         
-        return view('user.dataSimpanan.index', compact('user', 'data'));
+        return view('user.dataSimpanan.show', compact('user', 'simpanan', 'detsimp', 'total'));
     }
+
+    public function index()
+    {
+        $user = auth()->id();
+        $simpanan = Simpanan::where('users_id', $user)->get();
+
+        $total = 0;
+        return view('user.dataSimpanan.index', compact('user', 'simpanan', 'total'));
+    }
+
     
-    // public function show(Request $request)
-    // {
-        
-
-    //     // $jenis = JenisSimpanan::all();
-    //     // $anggota = Anggota::all();
-        
-    //     // $data = Anggota::where('users_id', $user)->get();
-
-    //     return view('user.dataSimpanan.show', compact('user', 'data'
-    //     , 'anggota', 'jenis'
-    // ));
-    // }
 }

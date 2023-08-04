@@ -1,6 +1,7 @@
-@extends('layouts.app')
+
+@extends('admin.layout.app')
 @section('content')
-<title>Home</title>
+<title>Anggota</title>
 
 <div class="main-panel">
     <div class="content">

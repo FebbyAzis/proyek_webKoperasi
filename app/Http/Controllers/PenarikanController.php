@@ -7,6 +7,7 @@ use App\Models\Penarikan;
 use App\Models\Simpanan;
 use App\Models\Users;
 use App\Models\JenisSimpanan;
+use Illuminate\Database\Eloquent\Collection\OrderByDesc;
 
 class PenarikanController extends Controller
 {
@@ -27,8 +28,9 @@ class PenarikanController extends Controller
 
         $save = new Penarikan;
         $save->simpanan_id = $request->simpanan_id;
-        $save->tanggal = $request->tanggal;  
+        // $save->tanggal = $request->tanggal;  
         $save->jumlah = $request->jumlah;  
+        $save->sisaSimpanan = $request->sisaSimpanan;  
         $save->save(); 
         return redirect()->back()->with('Success', 'Ditambahkan');
     }
@@ -36,9 +38,14 @@ class PenarikanController extends Controller
     {
 
         $simpanan = Simpanan::find($id);
-        $data = Penarikan::where('simpanan_id', $id)->get();
+        $data = Penarikan::where('simpanan_id', $id)->orderBy('id', 'desc')->get();
+    //    dd($data);
         $total = 0;
-        return view('admin.penarikan.show', compact('data', 'simpanan', 'total'));
+        $hasil = 0;
+        $totalss = 0;
+        $hasilss = 0;
+        
+        return view('admin.penarikan.show', compact('data', 'simpanan', 'total', 'hasil', 'totalss', 'hasilss'));
     }
 
     

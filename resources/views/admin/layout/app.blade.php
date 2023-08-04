@@ -4,7 +4,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 	<title>KOPERASI TUTWURI HANDAYANI</title>
 	<meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
-	<link rel="icon" href="{{ asset('img/icon.ico') }}" type="image/x-icon"/>
+	<link rel="icon" href="{{ asset('Assets/images/logo_koperasi.png') }}" type="image/x-icon"/>
 
 	<!-- Fonts and icons -->
 	<script src="{{ asset('js/plugin/webfont/webfont.min.js') }}"></script>
@@ -24,18 +24,33 @@
 			<div class="logo-header" data-background-color="blue">
 				<h6 class="text-white pb-2 fw-bold text-center mt-3">KOPERASI TUTWURI HANDAYANI KOTA CIREBON</h6>
 				
-				<button class="navbar-toggler sidenav-toggler ml-auto" type="button" data-toggle="collapse" data-target="collapse" aria-expanded="false" aria-label="Toggle navigation">
+				{{-- <button class="navbar-toggler sidenav-toggler ml-auto" type="button" data-toggle="collapse" data-target="collapse" aria-expanded="false" aria-label="Toggle navigation">
 					<span class="navbar-toggler-icon">
 						<i class="icon-menu"></i>
             <i class="fas fa-bars"></i>
 					</span>
 				</button>
+				
 				<button class="topbar-toggler more"><i class="icon-options-vertical"></i></button>
 				<div class="nav-toggle">
 					<button class="btn btn-toggle toggle-sidebar">
 						<i class="icon-menu"></i>
 					</button>
+					
+				</div> --}}
+				&nbsp;
+				<button class="navbar-toggler sidenav-toggler ml-auto" type="button" data-toggle="collapse" data-target="collapse" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon">
+						<i class="fas fa-bars"></i>
+					</span>
+				</button>
+				<button class="topbar-toggler more"><i class="icon-options-vertical"></i></button>
+				<div class="nav-toggle">
+					<button class="btn btn-toggle toggle-sidebar">
+						{{-- <i class="fas fa-bars"></i> --}}
+					</button>
 				</div>
+				
 			</div>
 			<!-- End Logo Header -->
 
@@ -61,7 +76,7 @@
 								<i class="fa fa-search"></i>
 							</a>
 						</li>
-						<li class="nav-item dropdown hidden-caret">
+						{{-- <li class="nav-item dropdown hidden-caret">
 							<a class="nav-link dropdown-toggle" href="#" id="messageDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 								<i class="fa fa-envelope"></i>
 							</a>
@@ -130,8 +145,8 @@
 									<a class="see-all" href="javascript:void(0);">See all messages<i class="fa fa-angle-right"></i> </a>
 								</li>
 							</ul>
-						</li>
-						<li class="nav-item dropdown hidden-caret">
+						</li> --}}
+						{{-- <li class="nav-item dropdown hidden-caret">
 							<a class="nav-link dropdown-toggle" href="#" id="notifDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 								<i class="fa fa-bell"></i>
 								<span class="notification">4</span>
@@ -188,8 +203,8 @@
 									<a class="see-all" href="javascript:void(0);">See all notifications<i class="fa fa-angle-right"></i> </a>
 								</li>
 							</ul>
-						</li>
-						<li class="nav-item dropdown hidden-caret">
+						</li> --}}
+						{{-- <li class="nav-item dropdown hidden-caret">
 							<a class="nav-link" data-toggle="dropdown" href="#" aria-expanded="false">
 								<i class="fas fa-layer-group"></i>
 							</a>
@@ -241,7 +256,7 @@
 									</div>
 								</div>
 							</div>
-						</li>
+						</li> --}}
 						<li class="nav-item dropdown hidden-caret">
 							<a class="dropdown-toggle profile-pic" data-toggle="dropdown" href="#" aria-expanded="false">
 								<div class="avatar-sm">
@@ -254,18 +269,19 @@
 										<div class="user-box">
 											<div class="avatar-lg"><img src="{{ asset('img/profile.jpg') }}" alt="image profile" class="avatar-img rounded"></div>
 											<div class="u-text">
-												<h4>Hizrian</h4>
-												<p class="text-muted">hello@example.com</p><a href="profile.html" class="btn btn-xs btn-secondary btn-sm">View Profile</a>
+												<h4>{{ Auth::user()->name }}</h4>
+												<p class="text-muted">{{ Auth::user()->email }}</p>
+												{{-- <a href="profile.html" class="btn btn-xs btn-secondary btn-sm">View Profile</a> --}}
 											</div>
 										</div>
 									</li>
 									<li>
-										<div class="dropdown-divider"></div>
-										<a class="dropdown-item" href="#">My Profile</a>
-										<a class="dropdown-item" href="#">My Balance</a>
-										<a class="dropdown-item" href="#">Inbox</a>
-										<div class="dropdown-divider"></div>
-										<a class="dropdown-item" href="#">Account Setting</a>
+											{{-- <div class="dropdown-divider"></div>
+											<a class="dropdown-item" href="#">My Profile</a>
+											<a class="dropdown-item" href="#">My Balance</a>
+											<a class="dropdown-item" href="#">Inbox</a>
+											<div class="dropdown-divider"></div>
+											<a class="dropdown-item" href="#">Account Setting</a> --}}
 										<div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="{{ route('logout') }}"
                     onclick="event.preventDefault();
@@ -295,11 +311,11 @@
 							<img src="{{ asset('img/profile.jpg') }}" alt="..." class="avatar-img rounded-circle">
 						</div>
 						<div class="info">
-							<a data-toggle="collapse" href="#collapseExample" aria-expanded="true">
+							<a aria-expanded="true">
 								<span>
 									{{ Auth::user()->name }}
 									<span class="user-level">Admin</span>
-									<span class="caret"></span>
+									
 								</span>
 							</a>
 							<div class="clearfix"></div>
@@ -327,8 +343,8 @@
 						</div>
 					</div>
 					<ul class="nav nav-primary">
-						<li class="nav-item {{ request()->is('/') ? 'active' : '' }}">
-							<a href="{{ url('/') }}" class="collapsed" aria-expanded="false">
+						<li class="nav-item {{ request()->is('homeAdmin*') ? 'active' : '' }}">
+							<a href="{{ route('homeAdmin.index') }}" class="collapsed" aria-expanded="false">
 								<i class="fas fa-home"></i>
 								<p>Home</p>
 							</a>
@@ -363,11 +379,11 @@
 											<span class="sub-item">Simpanan Anggota</span>
 										</a>
 									</li>
-									<li>
+									{{-- <li>
 										<a href="{{ route('penarikan.index') }}">
 											<span class="sub-item">Penarikan</span>
 										</a>
-									</li>
+									</li> --}}
 								</ul>
 							</div>
 						</li>
@@ -389,11 +405,11 @@
 											<span class="sub-item">Pinjaman Anggota</span>
 										</a>
 									</li>
-									<li>
+									{{-- <li>
 										<a href="{{ route('angsuran.index') }}">
 											<span class="sub-item">Angsuran</span>
 										</a>
-									</li>
+									</li> --}}
 								</ul>
 							</div>
 						</li>
@@ -429,60 +445,42 @@
 						</li>
 
 						
-						<li class="nav-item">
-							<a data-toggle="collapse" href="#submenu">
+						<li class="nav-item {{ (request()->is('laporanSimpanan*')) ? 'active' : '' }} {{ (request()->is('laporanPinjaman*')) ? 'active' : '' }}
+							{{ (request()->is('laporan-jasaAnggota*')) ? 'active' : '' }} {{ (request()->is('laporan-shuAnggota*')) ? 'active' : '' }}"  >
+							<a data-toggle="collapse" href="#laporanAll">
 								<i class="fas fa-book"></i>
 								<p>Laporan</p>
 								<span class="caret"></span>
 							</a>
-							<div class="collapse" id="submenu">
+							<div class="collapse" id="laporanAll">
 								<ul class="nav nav-collapse">
 									<li>
-										<a data-toggle="collapse" href="#subnav1">
-											<span class="sub-item">Level 1</span>
-											<span class="caret"></span>
+										<a href="{{ url('/laporanSimpanan') }}">
+											<span class="sub-item">Laporan Simpanan Anggota</span>
 										</a>
-										<div class="collapse" id="subnav1">
-											<ul class="nav nav-collapse subnav">
-												<li>
-													<a href="#">
-														<span class="sub-item">Level 2</span>
-													</a>
-												</li>
-												<li>
-													<a href="#">
-														<span class="sub-item">Level 2</span>
-													</a>
-												</li>
-											</ul>
-										</div>
 									</li>
 									<li>
-										<a data-toggle="collapse" href="#subnav2">
-											<span class="sub-item">Level 1</span>
-											<span class="caret"></span>
+										<a href="{{ url('/laporanPinjaman') }}">
+											<span class="sub-item">Laporan Pinjaman Anggota</span>
 										</a>
-										<div class="collapse" id="subnav2">
-											<ul class="nav nav-collapse subnav">
-												<li>
-													<a href="#">
-														<span class="sub-item">Level 2</span>
-													</a>
-												</li>
-											</ul>
-										</div>
 									</li>
 									<li>
-										<a href="#">
-											<span class="sub-item">Level 1</span>
+										<a href="{{ url('/laporan-jasaAnggota') }}">
+											<span class="sub-item">Laporan Jasa Anggota</span>
 										</a>
 									</li>
+									<li>
+										<a href="{{ url('/laporan-shuAnggota') }}">
+											<span class="sub-item">Laporan SHU Anggota</span>
+										</a>
+									</li>
+									
 								</ul>
+								
 							</div>
 						</li>
-						<li class="mx-4 mt-2">
-							<a href="http://themekita.com/atlantis-bootstrap-dashboard.html" class="btn btn-primary btn-block"><span class="btn-label mr-2"> <i class="fa fa-heart"></i> </span>Buy Pro</a> 
-						</li>
+						
+						
 					</ul>
 				</div>
 			</div>

@@ -15,29 +15,19 @@
                     </div>
                 </div>
             </div>
-           
+            @foreach ($data as $data)
+            @csrf
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
                         <div class="d-flex align-items-center">
                             <h4 class="card-title">Detail Data Pinjaman Anggota</h4>
-                           <div class="col-lg-3"></div>
-                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                           
-                           <div class="col-sm-5" style="text-align: end">
-                            @foreach ($data as $p)
-                            <a href="{{ route('dataPinjaman.show', $p->id) }}">
-                            @endforeach
-                                
-                                <button class="btn btn-secondary btn-round ml-auto">
-                                    <i class="fas fa-wallet"></i>
-                                         &nbsp; Lihat Data Pinjaman
-                                    </button></a>
-                                </div>
-                                   
+                            {{-- <button class="btn btn-primary btn-round ml-auto" data-toggle="modal" data-target="#addRowModal">
+                    <i class="fa fa-eye"></i>
+                     Lihat Data Anggota
+                </button> --}}
+                        </div>
                     </div>
-                    @foreach ($data as $data)
-                        @csrf 
                     <div class="card-body ml-3">
                         
                         
@@ -103,31 +93,24 @@
                                   </table>
                             </div>
                         </div>
+
+
+
+
+
                     </div>
-                    @endforeach
-                    </div>
-                    
-
-
-
-
-                    
                 </div>
-                 
-              
+                @endforeach
             </div>
 
             
-            {{-- <div class="col-md-12">
+            <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
                         <div class="d-flex align-items-center">
-                            <h4 class="card-title">Detail Data Angsuran</h4>
+                            <h4 class="card-title">Detail Data Angsuran Pinjaman</h4>
                            
-                <button class="btn btn-secondary btn-round ml-auto" data-toggle="modal" data-target="#addRowModal">
-                    <i class="fa fa-plus"></i>
-                        Buat Angsuran
-                    </button>
+                
                         </div>
                     </div>
                     <div class="card-body ml-3">
@@ -147,10 +130,10 @@
                                     <tr>
                                         <td>{{date("d/M/Y", strtotime($d->tglAngsuran));}}</td>
                                         <td>Tahap {{ $no + 1 }}</td>
-                                        @php
-                                            $angs = ($data->jumlahPinjaman + $bungareq)/$data->lama;
-                                        @endphp
-                                        <td>{{ number_format($angs, 0, ',', '.') }}</td>
+                                        {{-- @php
+                                            $angs = ($d->jumlahPinjaman + $bungareq)/$data->lama;
+                                        @endphp --}}
+                                        <td>Rp. {{ number_format(($data->jumlahPinjaman + $bungareq)/$data->lama, 0, ',', '.') }}</td>
                                         @php
                                             $bungaAng = ($bungas * $d->bungaAngsuran);
                                         @endphp
@@ -163,7 +146,7 @@
                     </div>
                 </div>
             </div>
-            </div> --}}
+            </div>
                         
                         
                         

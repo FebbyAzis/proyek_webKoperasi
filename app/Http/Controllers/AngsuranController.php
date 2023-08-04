@@ -57,6 +57,14 @@ class AngsuranController extends Controller
     // public function show($id)
     // {
 
+    //     $pinjaman = Pinjaman::find($id);
+    //     $data = Angsuran::where('pinjaman_id', $id)->get();
+    //     $total = 0;
+    //     return view('admin.detailPinjaman.show', compact('data', 'pinjaman', 'total'));
+    // }
+    // public function show($id)
+    // {
+
     //     $data['data'] = Angsuran::find($id);
     //     // dd($data);
     //     return view('admin.pinjaman.show', $data);

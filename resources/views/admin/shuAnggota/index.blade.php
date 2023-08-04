@@ -135,8 +135,8 @@
                             <th>No</th>
                            
                             <th>Nama Anggota</th>
-                            <th>Hutang Barang</th>
-                            <th>Hutang Uang</th>                     
+                            <th>Simpanan</th>
+                            <th>Hutang</th>                     
                             <th>Action</th>
                         </tr>
                     </thead>

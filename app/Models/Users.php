@@ -11,8 +11,10 @@ use App\Models\SHUAnggota;
 use App\Models\Pinjaman;
 use App\Models\Angsuran;
 use App\Models\Penarikan;
+use App\Models\LaporanAll;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Users extends Model
 {
@@ -50,6 +52,9 @@ class Users extends Model
         return $this->hasMany(Penarikan::class);
     }
 
-   
+    public function user(): HasMany
+    {
+        return $this->hasMany(LaporanAll::class);
+    }
 
 }

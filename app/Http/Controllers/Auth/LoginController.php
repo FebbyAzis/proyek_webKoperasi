@@ -52,10 +52,10 @@ class LoginController extends Controller
 
             switch($user_role){
                 case 1:
-                    return redirect('/admin');
+                    return redirect('/homeAdmin');
                     break;
                 case 2:
-                    return view('/user.dashboard');
+                    return redirect('/homeAnggota');
                     break;
                 default:
                     Auth::logout();

@@ -72,19 +72,19 @@
                                         @php
                                             $bungareq = ($data->jumlahPinjaman * $data->bunga) / 100;
                                         @endphp
-                                        <td>Rp. {{ number_format($bungareq, 0, ',', '.') }}</td>
-                                       
-                                      </tr>
-                                      <tr>
-                                        <th scope="row">Total Pinjaman</th>
-                                        <td>:</td>
-                                        <td>Rp. {{ number_format($data->jumlahPinjaman + $bungareq, 0, ',', '.') }}</td>
+                                        <td>Rp. {{ number_format(($data->jumlahPinjaman * $data->bunga) / 100, 0, ',', '.') }}</td>
                                        
                                       </tr>
                                       <tr>
                                         <th scope="row">Nominal Angsuran</th>
                                         <td>:</td>
-                                        <td>Rp. {{ number_format(($data->jumlahPinjaman + $bungareq)/$data->lama, 0, ',', '.') }} / {{$data->lama}} Bulan</td>
+                                        <td>Rp. {{ number_format($data->jumlahPinjaman / $data->lama, 0, ',', '.') }}</td>
+                                       
+                                      </tr>
+                                      <tr>
+                                        <th scope="row">Total Angsuran</th>
+                                        <td>:</td>
+                                        <td>Rp. {{ number_format(($data->jumlahPinjaman/$data->lama)+ $bungareq, 0, ',', '.') }} / {{$data->lama}} Bulan</td>
                                        
                                       </tr>
                                      
@@ -126,8 +126,8 @@
                                         <th>Cicilan</th>
                                         <th>Angsuran</th>
                                   
-                                        <th>Bunga</th>
-                                        <th>Jumlah Bayar</th>
+                                        {{-- <th>Bunga</th> --}}
+                                        {{-- <th>Jumlah Bayar</th> --}}
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -138,12 +138,12 @@
                                         @php
                                             $angs = ($data->jumlahPinjaman + $bungareq)/$data->lama;
                                         @endphp
-                                        <td>{{ number_format($angs, 0, ',', '.') }}</td>
+                                        <td>{{ number_format(($data->jumlahPinjaman/$data->lama)+ $bungareq, 0, ',', '.') }}</td>
                                         @php
                                             $bungaAng = ($bungas * $d->bungaAngsuran);
                                         @endphp
-                                        <td>{{ number_format(($bungareq / $data->lama)+$bungaAng, 0, ',', '.') }}</td>
-                                        <td>{{ number_format(($bungareq / $data->lama)-$bungaAng+$angs, 0, ',', '.') }}</td>
+                                        {{-- <td>{{ number_format(($bungareq / $data->lama)+$bungaAng, 0, ',', '.') }}</td>
+                                        <td>{{ number_format(($bungareq / $data->lama)-$bungaAng+$angs, 0, ',', '.') }}</td> --}}
                                         
                                         
                                     </tr>
@@ -170,7 +170,7 @@
                                     <span class="fw-mediumbold">
                                     Tambah</span> 
                                     <span class="fw-light">
-                                        Simpanan Anggota
+                                        Angsuran Anggota
                                     </span>
                                 </h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -178,7 +178,7 @@
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <p class="small">Lengkapi data dibawah ini untuk menambahkan simpanan anggota baru!</p>
+                                <p class="small">Lengkapi data dibawah ini untuk menambahkan angsuran anggota baru!</p>
                                 <div class="col-sm-12 mt-1">
                               
                               </div>
@@ -188,7 +188,7 @@
                                         <div class="col-sm-12 mt-1">
                                             <div class="form-group form-group-default">
                                                 <label>Tanggal</label>
-                                                <input id="addName" type="date" class="form-control" placeholder="" name="tanggal">
+                                                <input id="addName" type="date" class="form-control" placeholder="" name="tglAngsuran">
                                             </div>
                                         </div>
     
@@ -206,7 +206,7 @@
                                               </div>
                                         </div>
     
-                                        <div class="col-sm-12 mt-1">
+                                        {{-- <div class="col-sm-12 mt-1">
                                             <div class="form-group">
                                                 <label for="exampleFormControlSelect1">Telat Bayar</label>
                                                 <select class="form-control" id="exampleFormControlSelect1" name="bungaAngsuran">
@@ -246,7 +246,7 @@
                                                     <option value="33">32 Hari</option>
                                                  </select>
                                               </div>
-                                        </div>
+                                        </div> --}}
                                         
                                        
                                     
